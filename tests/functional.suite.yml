@@ -1,0 +1,12 @@
+actor: FunctionalTester
+modules:
+    enabled:
+        - PhpBrowser:
+            url: http://beta.shoptet.cz.test:8080/
+        - \Helper\Acceptance
+        - Smtp:
+            username: catchall
+            password: catchall
+            imap_path: "{localhost:8143}INBOX"
+            wait_interval: 1 #waiting interval between trials in seconds
+            retry_counts: 3 # how many trials till

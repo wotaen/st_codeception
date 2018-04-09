@@ -1,0 +1,11 @@
+{
+    "require-dev": {
+        "codeception/codeception": "^2.4",
+        "spatie/phpunit-snapshot-assertions": "^1.2",
+        "codeception/visualception": "*",
+        "mendicm/css-regression": "dev-master"
+    },
+    "require": {
+        "ahmedsamy/codeception-smtp-mail": "^0.8.2"
+    }
+}

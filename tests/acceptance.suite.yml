@@ -1,0 +1,37 @@
+# Codeception Test Suite Configuration
+#
+# Suite for acceptance tests.
+# Perform tests in browser using the WebDriver or PhpBrowser.
+# If you need both WebDriver and PHPBrowser tests - create a separate suite.
+
+actor: AcceptanceTester
+modules:
+    enabled:
+#        - PhpBrowser:
+#            url: http://beta.shoptet.cz.test:8080/
+        - \Helper\Acceptance
+        - WebDriver:
+           url: 'http://beta.shoptet.cz.test:8080/'
+           browser: firefox # 'chrome' or 'firefox'
+           window_size: '1920x1200'
+           capabilities:
+                              chromeOptions:
+                                args: ["--headless", "--disable-gpu"]
+        - \mendicm\CodeceptionCssRegression\Module\CssRegression:
+            referenceImageDirectory: 'referenceImages'
+            failImageDirectory: 'failImages'
+            maxDifference: 0.005
+            automaticCleanup: true
+            module: WebDriver
+            fullScreenshots: false
+        - Smtp:
+            username: catchall
+            password: catchall
+            imap_path: "{localhost:8143}INBOX"
+            wait_interval: 1 #waiting interval between trials in seconds
+            retry_counts: 3 # how many trials till
+
+extensions:
+    enabled:
+        - Codeception\Extension\RunProcess:
+            - webdriver
